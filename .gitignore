@@ -1,2 +1,4 @@
 node_modules/
 .playwright-mcp/
+*.css.map
+FRONTEND-QA-REPORT.md
