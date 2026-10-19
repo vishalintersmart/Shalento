@@ -5,6 +5,31 @@
     document.documentElement.classList.add('js');
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lenis = null;
+
+    /* ---------- Smooth scrolling (Lenis) ---------- */
+    function initSmoothScroll() {
+        if (reduceMotion || !window.Lenis) return;
+
+        lenis = new window.Lenis({
+            autoRaf: true,
+            // Leave wheel events a component already consumed (e.g. the vertical feature slider) to that component
+            virtualScroll: function (data) { return !data.event.defaultPrevented; }
+        });
+
+        // In-page links: Lenis's own `anchors` option lets the native jump run too, which doubles the scroll
+        document.addEventListener('click', function (event) {
+            var link = event.target.closest('a[href^="#"]');
+            var target = link && link.hash && document.getElementById(decodeURIComponent(link.hash.slice(1)));
+            if (!target || event.defaultPrevented) return;
+
+            event.preventDefault();
+            history.pushState(null, '', link.hash);
+            lenis.scrollTo(target);
+            // Skip-link target is focusable (tabindex="-1"); keep its keyboard focus move
+            if (target.hasAttribute('tabindex')) target.focus({ preventScroll: true });
+        });
+    }
 
     /* ---------- Mobile navigation ---------- */
     function initNavigation() {
@@ -19,6 +44,8 @@
             toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
             nav.classList.toggle('isOpen', open);
             document.body.classList.toggle('isNavOpen', open);
+            // Lenis scrolls the window itself, so body overflow alone doesn't lock the page behind the menu
+            if (lenis) open ? lenis.stop() : lenis.start();
             // Keep focus inside the full-screen menu: everything behind it is inert while open
             Array.prototype.forEach.call(document.querySelectorAll('.skipLink, #pageWrapper, .siteFooter'), function (el) {
                 el.inert = open;
@@ -249,6 +276,7 @@
         Array.prototype.forEach.call(items, function (item) { observer.observe(item); });
     }
 
+    initSmoothScroll();
     initNavigation();
     initHeroCarousel();
     initProcessSteps();
