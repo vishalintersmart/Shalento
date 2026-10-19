@@ -13,6 +13,9 @@
 
         lenis = new window.Lenis({
             autoRaf: true,
+            // Time-based ease-out instead of the default lerp: each mouse-wheel notch glides rather than lurching forward
+            duration: 1.2,
+            easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
             // Leave wheel events a component already consumed (e.g. the vertical feature slider) to that component
             virtualScroll: function (data) { return !data.event.defaultPrevented; }
         });
