@@ -1,0 +1,67 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Section layout: heading column + vertical card slider
+.featureSplit
+  display: grid
+  grid-template-columns: minmax(0, 1fr)
+  gap: fluid(40)
+
+.featureSplit .sectionText
+  max-width: fluid(502)
+
+.featureCard
+  display: flex
+  flex-direction: column
+  justify-content: center
+  gap: fluid(20)
+  height: 100%
+  padding: fluid(28) fluid(24)
+  border-radius: $radius-lg
+  background: $clr-surface
+  transition: background-color $dur-base $ease-out
+
+.featureCardIcon
+  flex: none
+  width: fluid(64)
+
+  img
+    width: 100%
+    height: auto
+    transition: transform $dur-base $ease-out
+
+.featureCardTitle
+  font-size: var(--fs-h5)
+  line-height: 1.2
+  color: $clr-black
+
+.featureCardText
+  max-width: fluid(586)
+  margin-top: fluid(13)
+
+@media (hover: hover)
+  .featureCard:hover .featureCardIcon img
+    transform: scale(1.06)
+
+@media (min-width: 768px)
+  .featureCard
+    flex-direction: row
+    align-items: center
+    gap: fluid(40)
+    padding: fluid(32) fluid(48)
+
+  .featureCardIcon
+    width: fluid(88)
+
+@media (min-width: 992px)
+  .featureSplit
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(fluid(948), 58%))
+    column-gap: fluid(48)
+    align-items: start
+
+@media (min-width: 1200px)
+  .featureCard
+    gap: fluid(67)
+    padding-inline: fluid(76)
+
+  .featureCardIcon
+    width: fluid(101)

@@ -1,0 +1,54 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Responsive type & spacing scale (literal min-width queries per project standard)
+:root
+  --px: 1px
+  --fs-display: 36px
+  --fs-h2: 30px
+  --fs-h3: 22px
+  --fs-h4: 20px
+  --fs-h5: 20px
+  --fs-body: 16px
+  --fs-eyebrow: 14px
+  --lh-body: 1.65
+  --section-space: 56px
+  --gutter: 16px
+  --btn-height: 54px
+
+@media (min-width: 576px)
+  :root
+    --fs-display: 44px
+    --fs-h2: 34px
+
+@media (min-width: 768px)
+  :root
+    --fs-display: 52px
+    --fs-h2: 40px
+    --fs-h3: 24px
+    --fs-body: 17px
+    --fs-eyebrow: 16px
+    --section-space: 72px
+    --gutter: 22px
+    --btn-height: 60px
+
+@media (min-width: 992px)
+  :root
+    --fs-display: 60px
+    --fs-h2: 44px
+    --section-space: 88px
+
+// ≥1200: Figma 1920 values, scaled to the viewport by --px (see 0-abstracts/_functions)
+@media (min-width: 1200px)
+  :root
+    --px: min(1px, 100vw / 1920)
+    --fs-display: #{fluidFont(80)}
+    --fs-h2: #{fluidFont(60)}
+    --fs-h3: #{fluidFont(30)}
+    --fs-h4: #{fluidFont(22)}
+    --fs-h5: #{fluidFont(25)}
+    --fs-body: #{fluidFont(18)}
+    --fs-eyebrow: #{fluidFont(18)}
+    --lh-body: 1.667
+    --section-space: #{fluid(140)}
+    --gutter: #{fluid(24)}
+    --btn-height: #{fluid(64)}

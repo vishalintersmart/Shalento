@@ -1,0 +1,40 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Scroll reveal: only hidden once JS confirms support (html.js), so content is never lost without JS
+.js [data-animate]
+  opacity: 0
+  transform: translate3d(0, fluid(32), 0)
+  transition: opacity $dur-slow $ease-out, transform $dur-slow $ease-out
+  transition-delay: calc(var(--reveal-step, 0) * 0.1s)
+
+.js [data-animate="fade"]
+  transform: none
+
+.js [data-animate="zoom"]
+  transform: scale(0.94)
+
+.js [data-animate].isVisible,
+.js [data-animate]:focus-within
+  opacity: 1
+  transform: none
+
+// Keyboard focus must never land on still-hidden content
+.js [data-animate]:focus-within
+  transition: none
+
+[data-delay="1"]
+  --reveal-step: 1
+
+[data-delay="2"]
+  --reveal-step: 2
+
+[data-delay="3"]
+  --reveal-step: 3
+
+[data-delay="4"]
+  --reveal-step: 4
+
+@media (prefers-reduced-motion: reduce)
+  .js [data-animate]
+    opacity: 1
+    transform: none

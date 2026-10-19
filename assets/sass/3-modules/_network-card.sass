@@ -1,0 +1,74 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.networkCard
+  position: relative
+  height: 100%
+  padding: fluid(120) fluid(24) fluid(32)
+  border-radius: $radius-xl
+  background: $clr-white
+
+.networkCardBadge
+  position: absolute
+  top: fluid(11)
+  right: fluid(9)
+  display: grid
+  place-items: center
+  width: fluid(130)
+  height: fluid(96)
+  border-radius: fluid(19) fluid(19) fluid(19) fluid(200)
+  background: $clr-gold
+
+  img
+    width: fluid(48)
+    height: auto
+    margin: 0 0 fluid(6) fluid(18)
+
+.networkCardBadgeNavy
+  background: $clr-navy
+
+.networkCardTitle
+  max-width: fluid(604)
+  font-size: fluidFont(26)
+  line-height: 1.375
+  color: $clr-heading
+
+.networkCardText
+  max-width: fluid(730)
+  margin-top: fluid(21)
+
+@media (min-width: 768px)
+  .networkCard
+    padding: fluid(53) fluid(63)
+
+  .networkCardTitle
+    max-width: calc(100% - fluid(200))
+
+@media (min-width: 992px)
+  .networkCardTitle
+    font-size: fluidFont(32)
+
+@media (min-width: 1200px)
+  .networkCard
+    min-height: fluid(411)
+
+  .networkCardBadge
+    width: fluid(200)
+    height: fluid(148)
+
+    img
+      width: auto
+      margin: 0 0 fluid(10) fluid(22)
+
+  .splide.networkSlider:not(.is-active) .splide__list
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: fluid(28)
+
+@media (min-width: 1200px)
+  .networkCardTitle
+    font-size: fluidFont(36)
+
+@media (min-width: 1200px)
+  .networkCardTitle
+    max-width: fluid(517)
+    font-size: fluidFont(40)

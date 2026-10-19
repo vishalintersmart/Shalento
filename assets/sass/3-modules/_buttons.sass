@@ -1,0 +1,116 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.btn
+  position: relative
+  isolation: isolate
+  overflow: hidden
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  gap: fluid(12)
+  max-width: 100%
+  min-height: var(--btn-height)
+  padding: fluid(10) fluid(24)
+  border-radius: $radius-pill
+  font-size: fluidFont(16)
+  font-weight: $fw-semibold
+  line-height: 1.2
+  text-align: center
+  color: $clr-white
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out
+
+  // Gold light sweep (Figma prototype "Gold light sweep")
+  &::before
+    content: ""
+    position: absolute
+    inset: fluid(-16) auto fluid(-16) 0
+    z-index: -1
+    width: fluid(110)
+    background: linear-gradient(90deg, rgba($clr-gold, 0) 0%, rgba($clr-gold, 0.18) 35%, rgba($clr-gold, 0.9) 50%, rgba($clr-gold, 0.18) 65%, rgba($clr-gold, 0) 100%)
+    mix-blend-mode: screen
+    opacity: 0.9
+    transform: translateX(-130%) rotate(12deg)
+    pointer-events: none
+
+  @media (hover: hover)
+    &:hover
+      transform: translateY(-2px)
+      box-shadow: 0 12px 24px rgba($clr-navy, 0.22)
+
+      &::before
+        transform: translateX(440%) rotate(12deg)
+        transition: transform 0.9s $ease-out
+
+      .btnIcon
+        transform: translateX(fluid(4))
+
+  &:active
+    transform: translateY(0)
+
+.btnIcon
+  flex: none
+  width: fluid(20)
+  height: fluid(20)
+  transition: transform $dur-base $ease-out
+
+.btnNavy
+  background: $grad-navy
+
+.btnGold
+  background: $grad-gold
+
+.btnGlass
+  background: rgba($clr-gold, 0.2)
+  @include glass(fluid(13))
+
+  &::before
+    animation: btnSweep 5s linear infinite
+
+.btnSolid
+  justify-content: space-between
+  gap: fluid(24)
+  min-width: fluid(278)
+  padding-inline: fluid(28)
+  background: $clr-gold
+  color: $clr-ink
+  font-weight: $fw-regular
+  box-shadow: $shadow-button
+
+  &::before
+    mix-blend-mode: soft-light
+
+.btnOutline
+  background: $clr-white
+  border: $border-gold-strong
+  color: $clr-gold-text
+
+  &::before
+    display: none
+
+.btnSm
+  min-height: 0
+  padding: fluid(18) fluid(28)
+  font-size: fluidFont(16)
+
+@keyframes btnSweep
+  0%
+    transform: translateX(-130%) rotate(12deg)
+  60%, 100%
+    transform: translateX(440%) rotate(12deg)
+
+@media (min-width: 1200px)
+  .btn
+    padding-inline: fluid(31)
+    font-size: fluidFont(18)
+
+  .btnSolid
+    padding-inline: fluid(28)
+    font-size: fluidFont(16)
+
+  .btnSm
+    padding: fluid(18) fluid(28)
+    font-size: fluidFont(16)
+
+@media (prefers-reduced-motion: reduce)
+  .btnGlass::before
+    animation: none

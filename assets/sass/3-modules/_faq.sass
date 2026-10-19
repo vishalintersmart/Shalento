@@ -1,0 +1,77 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.faqList
+  margin-top: fluid(32)
+  border-top: 1px solid $clr-divider
+
+.faqItem
+  border-bottom: 1px solid $clr-divider
+
+  // Smooth open/close where ::details-content is supported; instant elsewhere
+  &::details-content
+    block-size: 0
+    overflow: hidden
+    transition: block-size $dur-base $ease-out, content-visibility $dur-base allow-discrete
+
+  &[open]::details-content
+    block-size: auto
+
+.faqQuestion
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: fluid(24)
+  padding-block: fluid(20)
+  font-size: fluidFont(18)
+  font-weight: $fw-medium
+  line-height: 1.5
+  color: $clr-heading
+  cursor: pointer
+  list-style: none
+
+  &::-webkit-details-marker
+    display: none
+
+  &::after
+    content: "+"
+    flex: none
+    width: fluid(24)
+    font-size: fluidFont(25)
+    line-height: 1
+    text-align: center
+    color: $clr-gold-text
+    transition: transform $dur-base $ease-out
+
+  &:hover
+    color: $clr-navy
+
+.faqItem[open] .faqQuestion::after
+  content: "−"
+
+.faqAnswer
+  max-width: fluid(1580)
+  padding: 0 fluid(48) fluid(24) 0
+
+:root
+  interpolate-size: allow-keywords
+
+@media (min-width: 1200px)
+  .faqList
+    margin-top: fluid(43)
+    border-top: 0
+
+  .faqQuestion
+    padding-block: fluid(38)
+    font-size: fluidFont(22)
+
+  .faqItem[open] .faqQuestion
+    padding-bottom: fluid(23)
+
+  .faqAnswer
+    padding: 0 fluid(80) fluid(14) fluid(5)
+
+.faqHeading
+  max-width: fluid(900)
+
+  .sectionText
+    max-width: fluid(788)

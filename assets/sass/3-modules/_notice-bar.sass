@@ -1,0 +1,59 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.noticeBar
+  overflow: hidden
+  background: rgba($clr-navy, 0.1)
+  color: $clr-navy
+
+.noticeBarInner
+  display: flex
+  align-items: center
+  gap: fluid(16)
+  min-height: fluid(64)
+  padding-block: fluid(16)
+
+.noticeBarLabel
+  flex: none
+  font-weight: $fw-semibold
+  color: $clr-gold-text
+
+.noticeBarTrack
+  flex: 1
+  min-width: 0
+  overflow: hidden
+
+.noticeBarMarquee
+  display: flex
+  width: max-content
+  animation: noticeMarquee 40s linear infinite
+
+  p
+    padding-right: fluid(80)
+    font-weight: $fw-medium
+    line-height: 1.2
+    white-space: nowrap
+
+.noticeBar:hover .noticeBarMarquee,
+.noticeBar:focus-within .noticeBarMarquee
+  animation-play-state: paused
+
+@keyframes noticeMarquee
+  to
+    transform: translateX(-50%)
+
+@media (min-width: 1200px)
+  .noticeBarInner
+    gap: fluid(24)
+    min-height: fluid(87)
+    font-size: fluidFont(20)
+
+@media (prefers-reduced-motion: reduce)
+  .noticeBarMarquee
+    width: auto
+    animation: none
+
+    p
+      white-space: normal
+
+      & + p
+        display: none

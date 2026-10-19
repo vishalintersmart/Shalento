@@ -1,0 +1,78 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.darkSection
+  background: $clr-navy
+  color: $clr-white
+
+.mediaCards
+  display: grid
+  grid-template-columns: minmax(0, 1fr)
+  gap: fluid(24)
+  margin-top: fluid(40)
+
+.mediaCardsImage
+  position: relative
+  overflow: hidden
+  border-radius: $radius-xl
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    aspect-ratio: 754 / 481
+    transition: transform 1.2s $ease-out
+
+  &::after
+    content: ""
+    position: absolute
+    inset: 0
+    background: rgba($clr-black, 0.1)
+
+.mediaCards:hover .mediaCardsImage img
+  transform: scale(1.03)
+
+.infoCardGrid
+  display: grid
+  gap: fluid(16)
+
+.infoCard
+  min-height: fluid(160)
+  padding: fluid(28) fluid(24)
+  border-radius: $radius-lg
+  background: rgba(36, 36, 36, 0.2)
+  @include glass(fluid(10))
+  transition: transform $dur-base $ease-out, background-color $dur-base $ease-out
+
+.infoCardTitle
+  font-size: var(--fs-h5)
+  line-height: 1.2
+  color: $clr-white
+
+.infoCardText
+  max-width: fluid(313)
+  margin-top: fluid(15)
+  line-height: 1.39
+
+@media (hover: hover)
+  .infoCard:hover
+    background: rgba(36, 36, 36, 0.35)
+    transform: translateY(fluid(-4))
+
+@media (min-width: 576px)
+  .infoCardGrid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: fluid(24)
+
+@media (min-width: 992px)
+  .mediaCards
+    grid-template-columns: minmax(0, 754fr) minmax(0, 942fr)
+    margin-top: fluid(57)
+
+  .infoCardGrid
+    align-self: end
+    gap: fluid(25) fluid(24)
+
+@media (min-width: 1200px)
+  .infoCard
+    min-height: fluid(209)
+    padding: fluid(60) fluid(44) fluid(40) fluid(57)

@@ -1,0 +1,42 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.introBlock
+  display: grid
+  grid-template-columns: minmax(0, 1fr)
+  gap: fluid(32)
+
+.introBlockMedia
+  justify-self: center
+  width: min(fluid(260), 70%)
+
+  img
+    width: 100%
+
+.introBlockText p + p
+  margin-top: calc(var(--fs-body) * var(--lh-body))
+
+@media (min-width: 768px)
+  .introBlock
+    grid-template-columns: minmax(0, 1fr) minmax(0, fluid(300))
+    column-gap: fluid(40)
+
+  .introBlockMedia
+    width: 100%
+
+  .introBlockText
+    grid-column: 1 / -1
+
+@media (min-width: 1200px)
+  .introBlock
+    grid-template-columns: minmax(0, 1fr) minmax(0, fluid(300)) minmax(0, fluid(580))
+    align-items: start
+
+  .introBlockMedia
+    margin-top: fluid(-19)
+
+  .introBlockText
+    grid-column: auto
+
+@media (min-width: 1200px)
+  .introBlock
+    grid-template-columns: minmax(0, 1fr) fluid(357) minmax(0, fluid(645))

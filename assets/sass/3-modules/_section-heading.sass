@@ -1,0 +1,137 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.sectionHeading
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+.sectionEyebrow
+  @include eyebrow
+  margin-bottom: fluid(16)
+  line-height: 1.2
+
+.sectionTitle
+  font-size: var(--fs-h2)
+  font-weight: $fw-semibold
+  line-height: 1.2
+  color: $clr-navy
+
+.sectionText
+  margin-top: fluid(16)
+  color: $clr-body
+
+  & + &
+    margin-top: calc(var(--fs-body) * var(--lh-body))
+
+.sectionHeadingAction
+  margin-top: fluid(32)
+
+.sectionRule
+  width: fluid(74)
+  height: 3px
+  margin-top: fluid(21)
+  background: $clr-gold
+
+  & + .sectionText
+    margin-top: fluid(33)
+
+// Modifiers
+.sectionHeadingCenter
+  align-items: center
+  max-width: fluid(1200)
+  margin-inline: auto
+  text-align: center
+
+.sectionHeadingInk .sectionTitle
+  color: $clr-heading
+
+.sectionHeadingLight
+  .sectionEyebrow
+    color: $clr-gold
+
+  .sectionTitle
+    color: $clr-white
+
+  .sectionText
+    color: $clr-text-light
+
+// Two-column heading: copy left, supporting text right
+.splitHeading
+  display: grid
+  grid-template-columns: minmax(0, 1fr)
+  gap: fluid(24)
+
+.splitHeading > .sectionHeading
+  max-width: fluid(903)
+
+.splitHeadingAside
+  max-width: var(--split-aside, fluid(645))
+
+  .sectionText:first-child
+    margin-top: 0
+
+.splitHeadingRule
+  display: flex
+  gap: fluid(24)
+
+  &::before
+    content: ""
+    flex: none
+    width: 3px
+    height: fluid(103)
+    margin-top: fluid(8)
+    background: $clr-gold
+
+@media (min-width: 768px)
+  .sectionEyebrow
+    margin-bottom: fluid(24)
+
+  .sectionText
+    margin-top: fluid(20)
+
+@media (min-width: 992px)
+  .splitHeading
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(var(--split-aside, fluid(645)), 50%))
+    column-gap: fluid(40)
+    align-items: start
+
+  .splitHeadingRule
+    gap: fluid(65)
+    max-width: calc(var(--split-aside, fluid(645)))
+
+@media (min-width: 1200px)
+  .sectionEyebrow
+    margin-bottom: fluid(27)
+
+  .sectionTitle
+    line-height: 1.21
+
+  .sectionHeadingAction
+    margin-top: fluid(64)
+
+// Section surfaces
+.sectionCream
+  background: $grad-cream
+
+.sectionCreamGold
+  background: $grad-cream-gold
+
+// Gap between a section heading and its card slider/grid
+.sectionSliderGap
+  margin-top: fluid(40)
+
+.splitHeadingWide
+  --split-aside: #{fluid(817)}
+
+.splitHeading:has(.splitHeadingRule)
+  --split-aside: #{fluid(705)}
+
+.splitHeadingRule .sectionText
+  max-width: fluid(502)
+
+.splitHeadingAside .sectionHeadingAction
+  margin-top: fluid(32)
+
+@media (min-width: 1200px)
+  .sectionSliderGap
+    margin-top: fluid(56)

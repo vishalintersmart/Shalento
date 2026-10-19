@@ -1,0 +1,35 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.ctaPanel
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  gap: fluid(24)
+  margin-top: fluid(40)
+  padding: fluid(28) fluid(24)
+  border: $border-gold-strong
+  border-radius: $radius-xl
+  background: $clr-white
+
+.ctaPanelTitle
+  font-size: fluidFont(24)
+  line-height: 1.25
+  color: $clr-heading
+
+.ctaPanelText
+  margin-top: fluid(12)
+
+@media (min-width: 992px)
+  .ctaPanel
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+    min-height: fluid(200)
+    margin-top: fluid(56)
+    padding: fluid(42) fluid(48)
+
+  .ctaPanelCopy
+    max-width: fluid(800)
+
+  .ctaPanelTitle
+    font-size: fluidFont(32)

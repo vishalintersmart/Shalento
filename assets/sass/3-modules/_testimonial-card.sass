@@ -1,0 +1,76 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.narrowInner
+  max-width: fluid(1560)
+  margin-inline: auto
+
+.testimonialSlider
+  margin-top: fluid(40)
+
+.testimonialCard
+  display: flex
+  flex-direction: column
+  gap: fluid(22)
+  height: 100%
+  min-height: fluid(360)
+  padding: fluid(30) fluid(30) fluid(28)
+  border: $border-gold-strong
+  border-radius: $radius-xl
+  background: $clr-white
+
+.testimonialCardMark
+  font-size: fluidFont(52)
+  line-height: 0.7
+  color: $clr-gold
+
+.testimonialCardQuote
+  flex: 1
+  font-size: fluidFont(17)
+  line-height: 1.5
+  color: $clr-heading
+  text-wrap: pretty
+
+.testimonialCardDivider
+  height: 1px
+  border: 0
+  margin: 0
+  background: rgba($clr-gold, 0.5)
+
+.testimonialCardPerson
+  display: flex
+  align-items: center
+  gap: fluid(15)
+
+  img
+    flex: none
+    width: fluid(58)
+    height: fluid(58)
+    border-radius: 50%
+    object-fit: cover
+
+.testimonialCardName
+  display: block
+  font-size: fluidFont(17)
+  font-weight: $fw-semibold
+  font-style: normal
+  line-height: 1.2
+  color: $clr-heading
+
+.testimonialCardRole
+  display: block
+  margin-top: fluid(5)
+  font-size: fluidFont(14)
+  line-height: 1.35
+
+@media (min-width: 1200px)
+  .testimonialSlider
+    margin-top: fluid(56)
+
+  .testimonialCard
+    min-height: fluid(456)
+
+  .testimonialCardQuote
+    font-size: fluidFont(19)
+
+.storiesHeading
+  max-width: fluid(900)

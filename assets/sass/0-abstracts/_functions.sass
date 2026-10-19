@@ -1,0 +1,13 @@
+@use "sass:math"
+
+// Desktop scaling. The Figma frame is 1920px wide; `--px` (1-base/_root) is 1px below 1200px, then
+// 100vw / 1920 up to 1920px, so laptops render a proportionally scaled copy of the design.
+// Pass the unitless Figma value: fluid(24) → 24px on the 1920 frame, 18px at 1440, 24px on mobile.
+@function fluid($value)
+  @return calc(#{$value} * var(--px))
+
+// Same scaling for type with a readability floor: 14px for body-and-up sizes (Figma 16px+), 12px for
+// small print — never above the design size itself. At 1440 the 18px body renders 14px (Figma 13.5px)
+@function fluidFont($value)
+  $floor: math.min($value, if($value >= 16, 14, 12))
+  @return max(#{$floor}px, fluid($value))

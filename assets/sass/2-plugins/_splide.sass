@@ -1,0 +1,30 @@
+@use "../../../node_modules/@splidejs/splide/dist/css/splide-core.min"
+@use "../0-abstracts/abstracts-dir" as *
+
+// Shared pagination look for every Splide slider (shown only while slides overflow)
+.splide__pagination
+  position: static
+  margin-top: 20px
+
+// 24px hit area (WCAG 2.5.8) around the 8px dot
+.splide__pagination__page
+  display: grid
+  place-items: center
+  min-width: 24px
+  height: 24px
+  padding-inline: 4px
+
+  &::before
+    content: ""
+    width: 8px
+    height: 8px
+    border-radius: $radius-pill
+    background: rgba($clr-gold, 0.35)
+    transition: width $dur-base $ease-out, background-color $dur-base $ease-out
+
+  &.is-active::before
+    width: 24px
+    background: $clr-gold
+
+.splide__slide
+  height: auto

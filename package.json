@@ -1,0 +1,16 @@
+{
+  "name": "shalento",
+  "private": true,
+  "description": "Shalento Medical Journey static site",
+  "scripts": {
+    "build:css": "sass assets/sass/app.sass:assets/css/app.css assets/sass/pages.sass:assets/css/pages.css --style=compressed --no-source-map --load-path=node_modules --quiet-deps --silence-deprecation=import,global-builtin,color-functions",
+    "watch:css": "sass assets/sass/app.sass:assets/css/app.css assets/sass/pages.sass:assets/css/pages.css --watch --load-path=node_modules --quiet-deps --silence-deprecation=import,global-builtin,color-functions",
+    "vendor": "node -e \"const fs=require('fs');fs.mkdirSync('assets/js/vendor',{recursive:true});fs.copyFileSync('node_modules/bootstrap/dist/js/bootstrap.min.js','assets/js/vendor/bootstrap.min.js');fs.copyFileSync('node_modules/@splidejs/splide/dist/js/splide.min.js','assets/js/vendor/splide.min.js')\"",
+    "build": "npm run vendor && npm run build:css"
+  },
+  "devDependencies": {
+    "@splidejs/splide": "4.1.4",
+    "bootstrap": "5.3.3",
+    "sass": "1.83.1"
+  }
+}

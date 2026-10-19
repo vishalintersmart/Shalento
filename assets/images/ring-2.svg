@@ -1,0 +1,9 @@
+<svg width="443" height="443" viewBox="0 0 443 443" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="221.5" cy="221.5" r="181" stroke="url(#ringGradient)" stroke-opacity="0.3" stroke-width="81"/>
+<defs>
+<linearGradient id="ringGradient" x1="39.9104" y1="-56.5793" x2="546.24" y2="56.9368" gradientUnits="userSpaceOnUse">
+<stop stop-color="#223050"/>
+<stop offset="1" stop-color="#4D6DB6"/>
+</linearGradient>
+</defs>
+</svg>

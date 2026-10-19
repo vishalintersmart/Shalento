@@ -1,0 +1,113 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.serviceCard
+  position: relative
+  isolation: isolate
+  display: flex
+  flex-direction: column
+  height: 100%
+  min-height: fluid(340)
+  padding: fluid(36) fluid(28)
+  overflow: hidden
+  border: $border-gold
+  border-radius: $radius-lg
+  background: $clr-white
+  transition: border-color $dur-base $ease-out
+
+.serviceCardIcon
+  display: flex
+  align-items: flex-start
+  height: fluid(64)
+  transition: opacity $dur-base $ease-out
+
+  img
+    width: auto
+    max-height: 100%
+
+.serviceCardTitle
+  margin-top: fluid(40)
+  font-size: var(--fs-h3)
+  line-height: 1.15
+  color: $clr-navy
+  transition: color $dur-base $ease-out
+
+.serviceCardText
+  max-width: fluid(409)
+  margin-top: fluid(12)
+  transition: color $dur-base $ease-out
+
+// Hover state (Figma component "Group 8 / Variant2", dissolve 300ms)
+.serviceCardMedia
+  position: absolute
+  inset: 0
+  z-index: -1
+  opacity: 0
+  transition: opacity $dur-base $ease-out
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+  &::after
+    content: ""
+    position: absolute
+    inset: 0
+    background: linear-gradient(180deg, rgba($clr-black, 0) 0%, rgba($clr-black, 0.9) 100%)
+
+.serviceCardArrow
+  position: absolute
+  top: fluid(28)
+  right: fluid(28)
+  display: grid
+  place-items: center
+  width: fluid(57)
+  height: fluid(57)
+  border-radius: 50%
+  background: $clr-gold
+  opacity: 0
+  transform: scale(0.6) rotate(-45deg)
+  transition: opacity $dur-base $ease-out, transform $dur-base $ease-out
+
+@media (hover: hover)
+  .serviceCard:hover
+    border-color: transparent
+
+    .serviceCardMedia,
+    .serviceCardArrow
+      opacity: 1
+
+    .serviceCardArrow
+      transform: none
+
+    .serviceCardIcon
+      opacity: 0
+
+    .serviceCardTitle,
+    .serviceCardText
+      color: $clr-white
+
+@media (min-width: 1200px)
+  .serviceCard
+    min-height: fluid(401)
+    padding: fluid(54) fluid(40) fluid(28) fluid(64)
+
+  .serviceCardIcon
+    height: fluid(84)
+
+  .serviceCardTitle
+    margin-top: fluid(74)
+    line-height: 1
+
+  .serviceCardText
+    margin-top: fluid(11)
+
+  .serviceCardArrow
+    top: fluid(44)
+    right: fluid(47)
+
+  // ≥1200 the slider is destroyed and cards become a 3×2 grid
+  .splide.serviceSlider:not(.is-active) .splide__list
+    display: grid
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    gap: fluid(24) fluid(22)

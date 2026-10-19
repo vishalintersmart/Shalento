@@ -1,0 +1,181 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Transparent header overlaying the hero (Figma: absolute over carousel)
+.siteHeader
+  position: absolute
+  inset: 0 0 auto
+  z-index: $z-header
+  color: $clr-white
+
+.siteHeaderInner
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: fluid(24)
+  padding-top: fluid(16)
+
+.siteLogo
+  position: relative
+  z-index: $z-nav + 1
+  flex: none
+
+  img
+    width: fluid(120)
+
+.siteHeaderActions
+  display: flex
+  align-items: center
+  gap: fluid(16)
+
+.siteHeaderCta
+  display: none
+
+// Primary navigation: full-screen panel below 1200px
+.siteNav
+  position: fixed
+  inset: 0
+  z-index: $z-nav
+  display: flex
+  flex-direction: column
+  justify-content: center
+  gap: fluid(40)
+  padding: fluid(120) fluid(32) fluid(48)
+  background: $clr-navy-dark
+  visibility: hidden
+  opacity: 0
+  transform: translateY(fluid(-16))
+  transition: opacity $dur-base $ease-out, transform $dur-base $ease-out, visibility 0s $dur-base
+
+  &.isOpen
+    visibility: visible
+    opacity: 1
+    transform: none
+    transition-delay: 0s
+
+.siteNavList
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: fluid(24)
+
+.siteNavLink
+  position: relative
+  display: inline-block
+  font-size: fluidFont(22)
+  font-weight: $fw-medium
+  line-height: 1.2
+
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    right: 0
+    bottom: fluid(-12)
+    height: 1px
+    background: $clr-gold
+    transform: scaleX(0)
+    transform-origin: left
+    transition: transform $dur-base $ease-out
+
+  &:hover::after,
+  &:focus-visible::after,
+  &[aria-current]::after
+    transform: scaleX(1)
+
+.siteNavCta
+  align-self: center
+
+.navToggle
+  position: relative
+  z-index: $z-nav + 1
+  display: grid
+  place-items: center
+  width: fluid(44)
+  height: fluid(44)
+
+.navToggleBar
+  position: relative
+  width: fluid(26)
+  height: 2px
+  border-radius: 2px
+  background: currentColor
+  transition: background-color $dur-fast
+
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    width: 100%
+    height: 2px
+    border-radius: 2px
+    background: currentColor
+    transition: transform $dur-base $ease-out
+
+  &::before
+    transform: translateY(fluid(-8))
+
+  &::after
+    transform: translateY(fluid(8))
+
+.navToggle[aria-expanded="true"] .navToggleBar
+  background: transparent
+
+  &::before
+    transform: rotate(45deg)
+
+  &::after
+    transform: rotate(-45deg)
+
+@media (min-width: 768px)
+  .siteLogo img
+    width: fluid(160)
+
+  .siteHeaderCta
+    display: inline-flex
+
+  .siteNavCta
+    display: none
+
+@media (min-width: 1200px)
+  .siteHeaderInner
+    align-items: flex-start
+    padding-top: fluid(27)
+
+  .siteLogo img
+    width: fluid(200)
+
+  .siteNav
+    position: static
+    flex: 1
+    justify-content: center
+    height: var(--btn-height)
+    margin-top: fluid(34)
+    padding: 0
+    background: none
+    visibility: visible
+    opacity: 1
+    transform: none
+    transition: none
+
+  .siteNavList
+    flex-direction: row
+    justify-content: center
+    gap: fluid(40)
+
+  .siteNavLink
+    font-size: fluidFont(18)
+
+  .siteHeaderActions
+    margin-top: fluid(34)
+
+  .navToggle
+    display: none
+
+@media (min-width: 1200px)
+  .siteNavList
+    gap: fluid(63)
+
+@media (min-width: 1200px)
+  .siteLogo img
+    width: fluid(256)

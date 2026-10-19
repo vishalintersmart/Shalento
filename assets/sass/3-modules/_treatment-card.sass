@@ -1,0 +1,88 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.treatmentCard
+  position: relative
+  display: flex
+  flex-direction: column
+  gap: fluid(16)
+  height: 100%
+  padding: fluid(24)
+  border: $border-gold
+  border-radius: $radius-md
+  background: $clr-white
+  transition: box-shadow $dur-base $ease-out, transform $dur-base $ease-out
+
+.treatmentCardMedia
+  position: relative
+  overflow: hidden
+  border-radius: $radius-sm
+
+  img
+    width: 100%
+    aspect-ratio: 274 / 204
+    object-fit: cover
+    transition: transform 0.6s $ease-out
+
+// Hover badge (Figma card-surgery)
+.treatmentCardBadge
+  position: absolute
+  top: 50%
+  left: 50%
+  display: grid
+  place-items: center
+  width: fluid(80)
+  height: fluid(80)
+  border-radius: 50%
+  background: rgba(217, 217, 217, 0.2)
+  backdrop-filter: blur(4px)
+  -webkit-backdrop-filter: blur(4px)
+  opacity: 0
+  transform: translate(-50%, -50%) scale(0.7)
+  transition: opacity $dur-base $ease-out, transform $dur-base $ease-out
+  img
+    aspect-ratio: auto
+    width: fit-content
+    height: fit-content
+
+.treatmentCardIcon
+  display: grid
+  place-items: center
+  width: fluid(49)
+  height: fluid(49)
+  border-radius: 50%
+  background: $clr-gold-tint
+
+.treatmentCardBody
+  display: flex
+  flex-direction: column
+  gap: fluid(8)
+
+.treatmentCardTitle
+  font-size: fluidFont(20)
+  line-height: 1.21
+  color: $clr-heading
+
+.treatmentCardText
+  font-size: fluidFont(14)
+  line-height: 1.57
+
+@media (hover: hover)
+  .treatmentCard:hover
+    box-shadow: $shadow-card
+
+    .treatmentCardMedia img
+      transform: scale(1.05)
+
+    .treatmentCardBadge
+      opacity: 1
+      transform: translate(-50%, -50%)
+
+@media (min-width: 1200px)
+  .treatmentCardTitle
+    font-size: fluidFont(22)
+
+@media (min-width: 1200px)
+  .splide.treatmentSlider:not(.is-active) .splide__list
+    display: grid
+    grid-template-columns: repeat(5, minmax(0, 1fr))
+    gap: fluid(16) fluid(24)

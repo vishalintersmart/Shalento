@@ -1,0 +1,281 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.siteFooter
+  background: $clr-navy-dark
+  color: $clr-footer-text
+
+// Consultation callout
+.footerCallout
+  position: relative
+  overflow: hidden
+  padding-block: fluid(56)
+  background: linear-gradient(90deg, $clr-navy-callout 0%, $clr-navy-callout-mid 70%, $clr-navy-dark 100%)
+
+  &::before
+    content: ""
+    position: absolute
+    top: 50%
+    right: fluid(-40)
+    width: fluid(620)
+    height: fluid(620)
+    border-radius: 50%
+    background: radial-gradient(circle closest-side, rgba($clr-gold, 0.18), rgba($clr-gold, 0))
+    transform: translateY(-50%)
+    pointer-events: none
+
+.footerCalloutInner
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  gap: fluid(32)
+
+.footerCalloutCopy
+  display: flex
+  flex-direction: column
+  gap: fluid(18)
+  max-width: fluid(920)
+
+.footerEyebrow
+  font-size: fluidFont(13)
+  font-weight: $fw-bold
+  line-height: 1.2
+  letter-spacing: 0.24em
+  text-transform: uppercase
+  color: $clr-gold-light
+
+.footerCalloutTitle
+  font-size: fluidFont(30)
+  font-weight: $fw-medium
+  line-height: 1.08
+  letter-spacing: -0.01em
+  color: $clr-cream
+
+.footerCalloutText
+  max-width: fluid(760)
+  font-size: fluidFont(17)
+  line-height: 1.65
+
+// Main footer
+.footerMain
+  padding-block: fluid(56) fluid(44)
+
+.footerColumns
+  display: grid
+  gap: fluid(40)
+
+.footerBrand
+  display: flex
+  flex-direction: column
+  gap: fluid(24)
+  max-width: fluid(520)
+
+  img
+    width: fluid(180)
+
+.footerTagline
+  max-width: fluid(445)
+  font-size: fluidFont(20)
+  line-height: 1.5
+  color: $clr-cream
+
+.footerNote
+  max-width: fluid(470)
+  font-size: fluidFont(14)
+  line-height: 1.55
+  color: $clr-footer-muted
+
+.footerColumn
+  display: flex
+  flex-direction: column
+  gap: fluid(16)
+
+.footerColumnTitle
+  font-size: fluidFont(18)
+  font-weight: $fw-bold
+  line-height: 1.2
+  letter-spacing: 0.02em
+  color: $clr-cream
+
+  &::after
+    content: ""
+    display: block
+    width: fluid(36)
+    height: 1px
+    margin-top: fluid(16)
+    background: $clr-gold
+
+.footerLinks
+  display: flex
+  flex-direction: column
+  gap: fluid(12)
+  font-size: fluidFont(16)
+  line-height: 1.45
+
+  a
+    transition: color $dur-fast
+
+    &:hover
+      color: $clr-gold-light
+
+.footerContactList
+  display: flex
+  flex-direction: column
+  gap: fluid(20)
+
+.footerContactItem
+  display: flex
+  align-items: flex-start
+  gap: fluid(12)
+
+.footerContactIcon
+  display: grid
+  flex: none
+  place-items: center
+  width: fluid(34)
+  height: fluid(34)
+  border-radius: 50%
+  background: rgba($clr-gold, 0.12)
+
+.footerContactLabel
+  display: block
+  margin-bottom: 3px
+  font-size: fluidFont(12)
+  font-weight: $fw-bold
+  line-height: 1.2
+  letter-spacing: 0.1em
+  text-transform: uppercase
+  color: $clr-footer-muted
+
+.footerContactValue
+  font-size: fluidFont(16)
+  font-style: normal
+  line-height: 1.45
+  color: $clr-cream
+
+  a:hover
+    color: $clr-gold-light
+
+.footerHours
+  display: flex
+  align-items: center
+  gap: fluid(8)
+  font-size: fluidFont(13)
+  line-height: 1.2
+  color: $clr-footer-muted
+
+  &::before
+    content: ""
+    width: fluid(7)
+    height: fluid(7)
+    border-radius: 50%
+    background: $clr-gold
+
+.footerSocialRow
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: fluid(24)
+  margin-top: fluid(56)
+  padding-top: fluid(56)
+  border-top: $border-light
+
+.footerSocialTitle
+  font-size: fluidFont(20)
+  line-height: 1.2
+  color: $clr-cream
+
+.footerSocialText
+  margin-top: fluid(5)
+  font-size: fluidFont(14)
+  line-height: 1.2
+  color: $clr-footer-muted
+
+.footerSocialLinks
+  display: flex
+  gap: fluid(12)
+
+  a
+    display: grid
+    place-items: center
+    width: fluid(46)
+    height: fluid(46)
+    border: $border-light
+    border-radius: 50%
+    transition: border-color $dur-fast, background-color $dur-fast
+
+    &:hover
+      border-color: $clr-gold
+      background: rgba($clr-gold, 0.12)
+
+.footerLegal
+  padding-block: fluid(26)
+  background: $clr-navy-darker
+  font-size: fluidFont(13)
+  line-height: 1.2
+
+.footerLegalInner
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: fluid(16) fluid(28)
+
+.footerCopyright
+  color: $clr-footer-muted
+
+.footerLegalLinks
+  display: flex
+  flex-wrap: wrap
+  gap: fluid(12) fluid(28)
+
+  a:hover
+    color: $clr-gold-light
+
+.footerLegalTag
+  letter-spacing: 0.08em
+  color: $clr-gold-light
+
+@media (min-width: 768px)
+  .footerColumns
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .footerCalloutTitle
+    font-size: fluidFont(40)
+
+@media (min-width: 1200px)
+  .footerCallout
+    min-height: fluid(320)
+    padding-block: fluid(72)
+
+  .footerCalloutInner
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+
+  .footerCalloutTitle
+    font-size: fluidFont(52)
+
+  .footerMain
+    padding-top: fluid(72)
+
+  .footerColumns
+    display: flex
+    justify-content: space-between
+
+  .footerBrand
+    width: fluid(520)
+
+    img
+      width: fluid(264)
+
+  .footerTagline
+    font-size: fluidFont(22)
+
+  .footerColumn
+    width: fluid(230)
+
+  .footerContact
+    width: fluid(350)
+    gap: fluid(20)

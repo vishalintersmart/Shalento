@@ -1,0 +1,106 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Home-only overrides of shared modules, scoped through the page wrapper
+.homePage
+  // FAQ follows the stories section directly, so it shares that section's bottom spacing
+  .faqSection
+    padding-top: 0
+
+// ≥1200: the Figma frame spaces each section individually (eyebrow top / last element bottom,
+// measured against each section's background edge), so the shared --section-space is overridden here
+@media (min-width: 1200px)
+  .homePage
+    .introSection
+      padding-block: fluid(172) fluid(166)
+
+    .servicesSection
+      padding-block: fluid(81) fluid(141)
+
+    .processSection
+      padding-block: fluid(141) fluid(137)
+
+    .whySection
+      padding-block: fluid(163) fluid(127)
+
+    .indiaSection
+      padding-block: fluid(96) fluid(171)
+
+    .treatmentsSection
+      padding-block: fluid(132) fluid(98)
+
+    .networkSection
+      padding-block: fluid(87) fluid(129)
+
+    .storiesSection
+      padding-block: fluid(63) fluid(188)
+
+    .faqSection
+      padding-block: fluid(25) fluid(154)
+
+    // Process: Figma sets the intro 29px below the title and the CTA 97px below the steps
+    .processSection
+      .sectionText
+        margin-top: fluid(29)
+
+      .sectionActions
+        margin-top: fluid(90)
+
+    // Services: aside copy aligns with the title, cards 80px below it, CTAs 107px below the cards
+    .servicesSection
+      .splitHeadingAside
+        margin-top: fluid(49)
+
+      .sectionSliderGap
+        margin-top: fluid(80)
+
+      .sectionActions
+        margin-top: fluid(107)
+
+    .whySection .sectionHeadingAction
+      margin-top: fluid(37)
+
+    .treatmentsSection
+      .sectionSliderGap
+        margin-top: fluid(36)
+
+      .sectionActions
+        margin-top: fluid(48)
+
+    .networkSection
+      .sectionSliderGap
+        margin-top: fluid(70)
+
+      .sectionActions
+        margin-top: fluid(88)
+
+    .faqSection .sectionActions
+      margin-top: fluid(78)
+
+    // Figma has no pagination under the Why slider: keep the dots in the bottom padding, not the flow
+    .whySection .splide
+      position: relative
+
+    .whySection .splide__pagination
+      position: absolute
+      top: 100%
+      right: 0
+      left: 0
+
+    // Figma copy boxes: service card text 365px, first network card text 651px (second keeps 730)
+    .serviceCardText
+      max-width: fluid(365)
+
+    .networkSlider .splide__slide:first-child .networkCardText
+      max-width: fluid(651)
+
+    // Why India: aside sits 17px lower; its first line needs 622px in Figma
+    .indiaSection
+      .splitHeading
+        --split-aside: #{fluid(622)}
+
+      .splitHeadingAside
+        margin-top: fluid(17)
+
+    // Why India: image grid starts 19px below the aside CTA
+    .indiaSection .mediaCards
+      margin-top: fluid(22)
