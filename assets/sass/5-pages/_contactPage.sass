@@ -1,0 +1,95 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Contact page: details column + enquiry form card (fields come from the shared forms module)
+.contactPage
+  .contactLayout
+    display: grid
+    grid-template-columns: minmax(0, 1fr)
+    gap: fluid(48)
+
+  .contactDetailsList
+    display: flex
+    flex-direction: column
+    gap: fluid(24)
+    margin-top: fluid(32)
+
+  .contactDetailsItem
+    display: flex
+    align-items: flex-start
+    gap: fluid(16)
+
+  .contactDetailsIcon
+    display: grid
+    flex: none
+    place-items: center
+    width: fluid(48)
+    height: fluid(48)
+    border-radius: 50%
+    background: $clr-gold-tint
+
+    img
+      width: fluid(22)
+      height: fluid(22)
+
+  .contactDetailsLabel
+    display: block
+    margin-bottom: 4px
+    font-size: fluidFont(14)
+    font-weight: $fw-bold
+    line-height: 1.2
+    letter-spacing: 0.1em
+    text-transform: uppercase
+    color: $clr-gold-text
+
+  .contactDetailsValue
+    font-style: normal
+    line-height: 1.45
+    color: $clr-heading
+
+    a:hover
+      color: $clr-gold-text
+
+  .contactForm
+    padding: fluid(28) fluid(24)
+    border: $border-gold
+    border-radius: $radius-xl
+    background: $clr-white
+    box-shadow: $shadow-card
+
+  .contactFormHead
+    margin-bottom: fluid(32)
+
+  // Anti-spam honeypot: off-screen, out of the tab order and hidden from assistive tech
+  .contactFormTrap
+    position: absolute
+    left: -9999px
+
+  .contactFormDone
+    padding: fluid(24) 0
+    text-align: center
+
+    h3
+      font-size: var(--fs-h3)
+      color: $clr-navy
+
+    p
+      margin-top: 8px
+
+@media (min-width: 768px)
+  .contactPage .contactForm
+    padding: fluid(40)
+
+@media (min-width: 992px)
+  .contactPage .contactLayout
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)
+    column-gap: fluid(64)
+    align-items: start
+
+@media (min-width: 1200px)
+  .contactPage
+    .contactDetailsList
+      gap: fluid(32)
+      margin-top: fluid(48)
+
+    .contactForm
+      padding: fluid(64)

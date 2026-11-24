@@ -1,0 +1,55 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// About-only layout glue for shared modules
+.aboutPage
+  .heroCarouselTitle
+    max-width: fluid(1000)
+
+  // PDF "compact information note" under the Who We Are copy
+  .roleNote
+    grid-column: 1 / -1
+    padding: fluid(24)
+    border: $border-gold-strong
+    border-radius: $radius-lg
+    background: $clr-gold-tint
+
+  .roleNoteTitle
+    font-size: var(--fs-h5)
+    line-height: 1.2
+    color: $clr-heading
+
+  .roleNoteText
+    margin-top: fluid(8)
+
+  .purposeGrid
+    display: grid
+    gap: fluid(16)
+    margin-top: fluid(40)
+
+  // Mission / Vision cards are wider than the home info cards
+  .purposeGrid .infoCardText
+    max-width: none
+
+@media (min-width: 768px)
+  .aboutPage
+    .purposeGrid
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+      gap: fluid(24)
+
+@media (min-width: 1200px)
+  .aboutPage
+    .roleNote
+      padding: fluid(40) fluid(48)
+
+    .purposeGrid
+      margin-top: fluid(57)
+
+    // Same as home: no pagination in the Figma frame, so keep the dots in the bottom padding, not the flow
+    .valuesSection .splide
+      position: relative
+
+    .valuesSection .splide__pagination
+      position: absolute
+      top: 100%
+      right: 0
+      left: 0

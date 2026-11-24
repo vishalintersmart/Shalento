@@ -79,6 +79,87 @@
         });
     }
 
+    /* ---------- Enquiry modal (Bootstrap) ---------- */
+    function initEnquiryModal() {
+        var modal = document.getElementById('enquiryModal');
+        var form = document.getElementById('enquiryForm');
+        var done = document.getElementById('enquiryDone');
+        if (!modal || !form || !done) return;
+
+        // Lenis scrolls the window itself, so Bootstrap's body overflow lock alone doesn't stop the page behind
+        modal.addEventListener('show.bs.modal', function () { if (lenis) lenis.stop(); });
+        modal.addEventListener('hidden.bs.modal', function () {
+            if (lenis) lenis.start();
+            form.reset();
+            form.hidden = false;
+            done.hidden = true;
+        });
+
+        // No backend yet: hand the enquiry to the visitor's mail app, addressed to the form action
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var lines = [];
+            new FormData(form).forEach(function (value, key) {
+                if (String(value).trim()) lines.push(key + ': ' + value);
+            });
+            window.location.href = form.getAttribute('action') + '?subject=' + encodeURIComponent('Consultation request') + '&body=' + encodeURIComponent(lines.join('\n'));
+            form.hidden = true;
+            done.hidden = false;
+        });
+    }
+
+    /* ---------- Contact form: accessible inline errors, then hand off to the mail app ---------- */
+    function initContactForm() {
+        var form = document.querySelector('[data-contact-form]');
+        var done = document.querySelector('[data-contact-done]');
+        if (!form || !done) return;
+
+        function clearError(field) {
+            var error = document.getElementById(field.getAttribute('aria-describedby') || '');
+            if (error && error.classList.contains('enquiryError')) error.remove();
+            field.removeAttribute('aria-invalid');
+            field.removeAttribute('aria-describedby');
+        }
+
+        function showError(field, index) {
+            clearError(field);
+            var error = document.createElement('p');
+            error.className = 'enquiryError';
+            error.id = 'contact-error-' + index;
+            error.textContent = field.validity.typeMismatch ? 'Enter a valid email address.' : field.getAttribute('data-error');
+            // After the wrapping label (or the consent label), so the message is not part of the field's accessible name
+            (field.closest('label') || field).insertAdjacentElement('afterend', error);
+            field.setAttribute('aria-invalid', 'true');
+            field.setAttribute('aria-describedby', error.id);
+        }
+
+        form.addEventListener('input', function (event) { clearError(event.target); });
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Honeypot: bots fill the hidden field, people never see it
+            if (form.elements.website.value) return;
+
+            var firstInvalid = null;
+            Array.prototype.forEach.call(form.querySelectorAll('[required]'), function (field, index) {
+                if (field.checkValidity()) return clearError(field);
+                showError(field, index);
+                firstInvalid = firstInvalid || field;
+            });
+            if (firstInvalid) return firstInvalid.focus();
+
+            var lines = [];
+            new FormData(form).forEach(function (value, key) {
+                if (key !== 'website' && String(value).trim()) lines.push(key + ': ' + value);
+            });
+            // No backend yet: hand the enquiry to the visitor's mail app, addressed to the form action
+            window.location.href = form.getAttribute('action') + '?subject=' + encodeURIComponent('Website enquiry') + '&body=' + encodeURIComponent(lines.join('\n'));
+            form.hidden = true;
+            done.hidden = false;
+            done.scrollIntoView({ block: 'center' });
+        });
+    }
+
     /* ---------- Hero carousel (Bootstrap) ---------- */
     function initHeroCarousel() {
         var el = document.getElementById('heroSlides');
@@ -282,6 +363,8 @@
     initSmoothScroll();
     initNavigation();
     initHeroCarousel();
+    initEnquiryModal();
+    initContactForm();
     initProcessSteps();
     Array.prototype.forEach.call(document.querySelectorAll('[data-slider]'), initSlider);
     initReveal();

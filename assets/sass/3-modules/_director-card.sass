@@ -1,0 +1,58 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+.directorGrid
+  display: grid
+  gap: fluid(16)
+  margin-top: fluid(40)
+
+.directorCard
+  display: flex
+  align-items: center
+  gap: fluid(24)
+  padding: fluid(28) fluid(24)
+  border: $border-gold
+  border-radius: $radius-lg
+  background: $clr-white
+  transition: transform $dur-base $ease-out, border-color $dur-base $ease-out
+
+.directorCardAvatar
+  display: grid
+  flex: none
+  place-items: center
+  width: fluid(88)
+  aspect-ratio: 1
+  border-radius: 50%
+  background: $grad-navy
+  font-size: fluidFont(28)
+  font-weight: $fw-semibold
+  color: $clr-white
+
+.directorCardName
+  font-size: var(--fs-h5)
+  line-height: 1.2
+  color: $clr-heading
+
+.directorCardRole
+  margin-top: fluid(8)
+  color: $clr-gold-text
+  font-weight: $fw-medium
+
+@media (hover: hover)
+  .directorCard:hover
+    border-color: rgba($clr-gold, 0.7)
+    transform: translateY(fluid(-4))
+
+@media (min-width: 768px)
+  .directorGrid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: fluid(24)
+
+@media (min-width: 1200px)
+  .directorGrid
+    max-width: fluid(1000)
+    margin-inline: auto
+    margin-top: fluid(56)
+
+  .directorCard
+    gap: fluid(40)
+    padding: fluid(48)

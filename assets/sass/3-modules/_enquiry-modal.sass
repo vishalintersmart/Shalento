@@ -1,0 +1,88 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// Bootstrap modal skinned with site tokens (reference: "Start Your Healthcare Journey" popup)
+.enquiryModal
+  --bs-modal-width: #{fluid(800)}
+  --bs-modal-padding: 0
+  --bs-modal-bg: #{$clr-white}
+  --bs-modal-border-width: 0
+  --bs-modal-border-radius: #{$radius-xl}
+  --bs-modal-inner-border-radius: #{$radius-xl}
+  --bs-modal-box-shadow: 0 18px 50px rgba(20, 30, 70, 0.3)
+  --bs-modal-margin: 16px
+  color: $clr-body
+  font-size: var(--fs-body)
+
+.modal-backdrop
+  --bs-backdrop-bg: #{$clr-navy-darker}
+  --bs-backdrop-opacity: 0.7
+
+.enquiryModalContent
+  overflow: hidden
+
+.enquiryModalHeader
+  position: relative
+  padding: 40px 24px 20px
+  text-align: center
+
+.enquiryModalClose
+  position: absolute
+  top: 12px
+  right: 12px
+  display: grid
+  place-items: center
+  width: 44px
+  height: 44px
+  border-radius: 50%
+  color: $clr-navy
+  font-size: 28px
+  line-height: 1
+  transition: background-color $dur-fast
+
+  &:hover
+    background: $clr-surface
+
+.enquiryModalTitle
+  font-size: var(--fs-h3)
+  font-weight: $fw-semibold
+  letter-spacing: 0.06em
+  text-transform: uppercase
+  line-height: 1.2
+  color: $clr-navy
+
+.enquiryModalQuote
+  margin-top: 12px
+  font-weight: $fw-medium
+  font-style: italic
+  color: $clr-gold-text
+
+.enquiryModalIntro
+  max-width: 520px
+  margin: 12px auto 0
+
+.enquiryModalBody
+  padding: 0 24px 32px
+
+.enquiryCare
+  margin-top: 16px
+  font-size: 14px
+  text-align: center
+  color: $clr-muted
+
+.enquiryDone
+  padding: 24px 0
+  text-align: center
+
+.enquiryDoneTitle
+  font-size: var(--fs-h3)
+  color: $clr-navy
+
+.enquiryDone p
+  margin-top: 8px
+
+@media (min-width: 768px)
+  .enquiryModalHeader
+    padding: 48px 48px 24px
+
+  .enquiryModalBody
+    padding: 0 48px 48px

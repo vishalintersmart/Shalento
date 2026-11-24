@@ -1,0 +1,31 @@
+@use "../0-abstracts/abstracts-dir" as *
+
+// 404: the header overlays the page top, so the dark panel reserves room for it
+.errorPage
+  .errorSection
+    display: flex
+    align-items: center
+    min-height: 100svh
+    padding-block: fluid(160) fluid(96)
+    text-align: center
+
+  .errorCode
+    font-size: fluidFont(120)
+    font-weight: $fw-semibold
+    line-height: 1
+    color: $clr-gold
+
+  .errorTitle
+    margin-top: fluid(16)
+    font-size: var(--fs-h2)
+    font-weight: $fw-semibold
+    line-height: 1.2
+    color: $clr-white
+
+  .errorText
+    max-width: fluid(640)
+    margin: fluid(16) auto 0
+    color: $clr-text-light
+
+  .errorAction
+    margin-top: fluid(32)

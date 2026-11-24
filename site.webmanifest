@@ -1,0 +1,15 @@
+{
+    "name": "Shalento Medical Journey",
+    "short_name": "Shalento",
+    "description": "Healthcare coordination and medical travel support for patients exploring healthcare in India.",
+    "icons": [
+        {
+            "src": "assets/images/favicon.png",
+            "sizes": "any",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#223050",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
