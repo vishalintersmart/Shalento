@@ -2,3 +2,7 @@ node_modules/
 .playwright-mcp/
 *.css.map
 FRONTEND-QA-REPORT.md
+/index.html
+/about.html
+/contact.html
+/404.html

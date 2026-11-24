@@ -8,10 +8,10 @@ PHP-assembled static site (PHP only composes shared templates; no application lo
 npm install
 npm run build      # copies vendor JS (Bootstrap, Splide) + compiles app.min.css / pages.min.css
 npm run watch:css  # recompile on change while developing
-npm run build:static # render *.php to *.html for GitHub Pages (needs php on PATH; `npm run build` runs it)
+npm run build:static # optional: render *.php to local *.html previews (git-ignored; needs php on PATH)
 ```
 
-GitHub Pages cannot run PHP: it serves the generated `*.html` copies. Edit the PHP, then run `npm run build` before pushing.
+The site needs a PHP host. GitHub Pages cannot run PHP, so the repo carries no `*.html`; the generated copies are git-ignored.
 
 ## Page structure
 
