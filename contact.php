@@ -1,7 +1,7 @@
 <?php
 $pageTitle = 'Contact Shalento Medical Journey | Healthcare Travel Enquiries';
 $pageDescription = 'Contact Shalento Medical Journey to enquire about healthcare coordination and travel support for patients exploring healthcare options in India.';
-$preloadImage = 'hero-slide-1';
+$preloadImage = 'hero-slide-2';
 include "main.php";
 ?>
 <link rel="stylesheet" href="assets/css/pages.min.css?v=<?= $assetVersion ?>">
@@ -11,7 +11,7 @@ include "main.php";
         <!-- Hero -->
         <section class="heroCarousel heroCarouselCompact" aria-labelledby="contact-title">
             <div class="heroCarouselSlides">
-                <img class="heroCarouselImage" src="assets/images/hero-slide-1.webp" srcset="assets/images/hero-slide-1-828.webp 828w, assets/images/hero-slide-1-1280.webp 1280w, assets/images/hero-slide-1.webp 1920w" sizes="100vw" width="1920" height="1080" alt="A Shalento journey coordinator talking with a couple in a hotel lounge" fetchpriority="high" decoding="async">
+                <img class="heroCarouselImage" src="assets/images/hero-slide-2.webp" srcset="assets/images/hero-slide-2-828.webp 828w, assets/images/hero-slide-2-1280.webp 1280w, assets/images/hero-slide-2.webp 1920w" sizes="100vw" width="1920" height="1080" alt="A journey coordinator guiding patients through their healthcare plans" fetchpriority="high" decoding="async">
             </div>
             <div class="heroCarouselOverlay" aria-hidden="true"></div>
             <div class="container heroCarouselContent">
